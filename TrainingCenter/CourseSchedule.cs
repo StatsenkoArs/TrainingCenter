@@ -59,6 +59,7 @@ namespace TrainingCenter
 
             var dataTable = new DataTable();
             adapter.Fill(dataTable);
+            connection.Close();
 
             return dataTable;
         }
@@ -110,6 +111,7 @@ namespace TrainingCenter
                 {
                     courseId = Convert.ToInt64(result);
                 }
+                connection.Close();
             }
 
             return courseId;
@@ -134,6 +136,7 @@ namespace TrainingCenter
                 {
                     teacherId = Convert.ToInt64(result);
                 }
+                connection.Close();
             }
 
             return teacherId;
@@ -159,6 +162,7 @@ namespace TrainingCenter
                 {
                     cost = Convert.ToDecimal(result);
                 }
+                connection.Close();
             }
 
             return cost;
@@ -183,6 +187,7 @@ namespace TrainingCenter
                 {
                     periodicity = result.ToString();
                 }
+                connection.Close();
             }
 
             return periodicity;
@@ -203,6 +208,7 @@ namespace TrainingCenter
                 command.Parameters.AddWithValue("@StartDate", startDate);
                 command.Parameters.AddWithValue("@TrainingType", trainingType);
                 command.ExecuteNonQuery();
+                connection.Close();
             }
         }
     }

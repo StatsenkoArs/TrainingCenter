@@ -63,7 +63,7 @@ namespace TrainingCenter
 
             var dataTable = new DataTable();
             adapter.Fill(dataTable);
-
+            connection.Close();
             return dataTable;
         }
 
@@ -175,23 +175,23 @@ namespace TrainingCenter
                     WHERE Id = @RecordId;";
 
                 var connection = _dataBase.getConnection();
+                connection.Open();
                 var command = new SqlCommand(query, connection);
 
                 command.Parameters.AddWithValue("@UpdatedValue", updatedValue);
                 command.Parameters.AddWithValue("@RecordId", recordId);
 
-                connection.Open();
-                int rowsAffected = command.ExecuteNonQuery();
-                connection.Close();
+                var rowsAffected = command.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Данные успешно обновлены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Данные успешно обновлены.");
                 }
                 else
                 {
                     MessageBox.Show("Не удалось обновить данные.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -235,9 +235,9 @@ namespace TrainingCenter
 
             var connection = _dataBase.getConnection();
             {
-                connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 count = (int)command.ExecuteScalar();
+                connection.Close();
             }
 
             return count;
@@ -309,8 +309,6 @@ namespace TrainingCenter
         {
             var connection = _dataBase.getConnection();
             {
-                connection.Open();
-
                 var transaction = connection.BeginTransaction();
                 {
                     try
@@ -339,6 +337,7 @@ namespace TrainingCenter
                     }
                 }
             }
+            connection.Close();
         }
 
         private void btn_refreshCourses_Click(object sender, EventArgs e)
