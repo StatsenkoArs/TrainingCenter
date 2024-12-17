@@ -44,6 +44,7 @@
             this.btn_create.TabIndex = 1;
             this.btn_create.Text = "Автоматическое создание";
             this.btn_create.UseVisualStyleBackColor = true;
+            this.btn_create.Click += new System.EventHandler(this.btn_create_Click);
             // 
             // CourseSchedule
             // 
