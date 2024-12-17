@@ -36,29 +36,33 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(616, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(462, 10);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(519, 745);
+            this.dataGridView1.Size = new System.Drawing.Size(389, 605);
             this.dataGridView1.TabIndex = 0;
             // 
             // btn_create
             // 
-            this.btn_create.Location = new System.Drawing.Point(397, 38);
+            this.btn_create.Location = new System.Drawing.Point(298, 31);
+            this.btn_create.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_create.Name = "btn_create";
-            this.btn_create.Size = new System.Drawing.Size(155, 100);
+            this.btn_create.Size = new System.Drawing.Size(116, 81);
             this.btn_create.TabIndex = 1;
             this.btn_create.Text = "Автоматическое создание ";
             this.btn_create.UseVisualStyleBackColor = true;
+            this.btn_create.Click += new System.EventHandler(this.btn_create_Click);
             // 
             // CourseSchedule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 769);
+            this.ClientSize = new System.Drawing.Size(860, 625);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CourseSchedule";
             this.Text = "Расписание";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

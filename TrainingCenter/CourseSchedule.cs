@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -6,31 +7,68 @@ namespace TrainingCenter
 {
     public partial class CourseSchedule : Form
     {
+        private readonly DataBase _dataBase;
+
         public CourseSchedule()
         {
-            DataBase dataBase = new DataBase();
-
-            var dataTable = new DataTable();
-            string query = "SELECT \r\n    " +
-                "FORMAT(StartDate, 'dd.MM.yyyy') AS 'Дата начала',\r\n    " +
-                "T.FullName AS 'Преподаватель',\r\n    " +
-                "G.SeatsAvailable AS 'Количество мест',\r\n    " +
-                "CC.Cost AS 'Стоимость',\r\n    " +
-                "CC.TrainingType AS 'Тип обучения'\r\n" +
-                "FROM \r\n    " +
-                "GroupSchedules G\r\n" +
-                "JOIN \r\n    " +
-                "Teachers T ON G.TeacherId = T.Id\r\n" +
-                "JOIN \r\n    CourseCosts CC ON G.CourseCostId = CC.Id;\r\n";
-
-            SqlDataAdapter adapter = new SqlDataAdapter();
-
-            adapter.SelectCommand = new SqlCommand(query, dataBase.getConnection());
-            adapter.Fill(dataTable);
-
             InitializeComponent();
 
-            dataGridView1.DataSource = dataTable;
+            _dataBase = new DataBase();
+            LoadScheduleData();
+        }
+
+        /// <summary>
+        /// Загружает данные расписания и привязывает их к DataGridView.
+        /// </summary>
+        private void LoadScheduleData()
+        {
+            try
+            {
+                dataGridView1.DataSource = GetScheduleData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Выполняет SQL-запрос и возвращает данные расписания.
+        /// </summary>
+        /// <returns>Таблица с данными расписания.</returns>
+        private DataTable GetScheduleData()
+        {
+            var query = @"
+                SELECT
+                    FORMAT(StartDate, 'dd.MM.yyyy') AS 'Дата начала',
+                    T.FullName AS 'Преподаватель',
+                    G.SeatsAvailable AS 'Количество мест',
+                    CC.Cost AS 'Стоимость',
+                    CC.TrainingType AS 'Тип обучения'
+                FROM
+                    GroupSchedules G
+                JOIN
+                    Teachers T ON G.TeacherId = T.Id
+                JOIN
+                    CourseCosts CC ON G.CourseCostId = CC.Id;
+            ";
+
+            var connection = _dataBase.getConnection();
+            var command = new SqlCommand(query, connection);
+            var adapter = new SqlDataAdapter(command);
+
+            var dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            return dataTable;
+        }
+
+        /// <summary>
+        /// Обработчик кнопки обновления данных.
+        /// </summary>
+        private void btn_create_Click(object sender, EventArgs e)
+        {
+            LoadScheduleData();
         }
     }
 }
