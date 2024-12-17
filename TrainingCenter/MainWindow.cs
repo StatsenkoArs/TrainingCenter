@@ -25,7 +25,8 @@ namespace TrainingCenter
 
         private void btn_openTeacher_Click(object sender, EventArgs e)
         {
-
+            TeacherWindow TeacherWindow = new TeacherWindow();
+            TeacherWindow.Show();
         }
 
         private void btn_openSchedule_Click(object sender, EventArgs e)
@@ -36,7 +37,7 @@ namespace TrainingCenter
 
         private void btn_openSetting_Click(object sender, EventArgs e)
         {
-            SettingsWindow settingsWindow = new SettingsWindow();   
+            SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();
         }
     }

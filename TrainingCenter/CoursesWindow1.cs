@@ -20,10 +20,10 @@ namespace TrainingCenter
             InitializeComponent();
 
             _dataBase = new DataBase();
-            LoadScheduleData();
+            LoadCourseData();
         }
 
-        private void LoadScheduleData()
+        private void LoadCourseData()
         {
             try
             {
@@ -37,10 +37,23 @@ namespace TrainingCenter
 
         public DataTable GetCourseData()
         {
-            var query = "SELECT \r\n    Id AS 'Код',\r\n    TrainingCenter AS 'Учебный центр',\r\n    Curator AS 'Куратор',\r\n    " +
-                "Name AS 'Название',\r\n    Description AS 'Описание',\r\n    RequiredPreparation AS 'Требуемая подготовка',\r\n    " +
-                "DurationHours AS 'Продолжительность (часы)',\r\n    Periodicity AS 'Периодичность',\r\n    CASE \r\n        " +
-                "WHEN IsActive = 1 THEN 'Активен' \r\n        ELSE 'Неактивен' \r\n    END AS 'Активен'\r\nFROM \r\n    Courses;";
+            var query = @"
+            SELECT
+                Id AS 'Код',
+                TrainingCenter AS 'Учебный центр',
+                Curator AS 'Куратор',
+                Name AS 'Название',
+                Description AS 'Описание',
+                RequiredPreparation AS 'Требуемая подготовка',
+                DurationHours AS 'Продолжительность (часы)',
+                Periodicity AS 'Периодичность',
+                CASE
+                    WHEN IsActive = 1 THEN 'Активен'
+                    ELSE 'Неактивен'
+                END AS 'Активен'
+            FROM
+                Courses;
+";
 
             var connection = _dataBase.getConnection();
             var command = new SqlCommand(query, connection);
@@ -57,7 +70,7 @@ namespace TrainingCenter
             AddingCourse addingCourse = new AddingCourse();
             addingCourse.ShowDialog();
 
-            LoadScheduleData();
+            LoadCourseData();
         }
     }
 }
