@@ -1,0 +1,14 @@
+D:\TrainingCenter\TrainingCenter\bin\Debug\TrainingCenter.exe.config
+D:\TrainingCenter\TrainingCenter\bin\Debug\TrainingCenter.exe
+D:\TrainingCenter\TrainingCenter\bin\Debug\TrainingCenter.pdb
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.csproj.AssemblyReference.cache
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.AddingCourse.resources
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.Properties.Resources.resources
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.SettingsWindow.resources
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.csproj.GenerateResource.cache
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.csproj.CoreCompileInputs.cache
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.exe
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.pdb
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.CourseSchedule.resources
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.MainWindow.resources
+D:\TrainingCenter\TrainingCenter\obj\Debug\TrainingCenter.CoursesWindow1.resources
