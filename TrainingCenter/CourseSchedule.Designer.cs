@@ -33,31 +33,32 @@
             // 
             // btn_create
             // 
-            this.btn_create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_create.BackColor = System.Drawing.Color.Teal;
+            this.btn_create.FlatAppearance.BorderSize = 0;
+            this.btn_create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_create.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btn_create.ForeColor = System.Drawing.Color.White;
-            this.btn_create.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btn_create.Location = new System.Drawing.Point(1332, 43);
             this.btn_create.Name = "btn_create";
             this.btn_create.Size = new System.Drawing.Size(178, 79);
             this.btn_create.TabIndex = 1;
             this.btn_create.Text = "Автоматическое создание";
             this.btn_create.UseVisualStyleBackColor = true;
-            this.btn_create.FlatAppearance.BorderSize = 0;
             // 
             // CourseSchedule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke; // светлый фон
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1599, 903);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CourseSchedule";
             this.Text = "Расписание";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.DataGridView dataGridView1;
