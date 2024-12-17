@@ -13,6 +13,8 @@ namespace TrainingCenter
 {
     public partial class CoursesWindow1 : Form
     {
+        private const int MAX_WEEKLY_COURSES = 5;
+
         private readonly DataBase _dataBase;
 
         public CoursesWindow1()
@@ -160,6 +162,13 @@ namespace TrainingCenter
                     return;
                 }
 
+                // Проверка на количество еженедельных курсов
+                if (!ValidateWeeklyCourseLimit())
+                {
+                    dataGridView1.CancelEdit();
+                    return;
+                }
+
                 string query = $@"
                     UPDATE {tableName}
                     SET {fieldName} = @UpdatedValue
@@ -192,6 +201,46 @@ namespace TrainingCenter
             {
                 LoadCourseData();
             }
+        }
+
+        private bool ValidateWeeklyCourseLimit()
+        {
+            string coursePeriodicity = dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells["Периодичность"].Value.ToString();
+
+            if (coursePeriodicity == "Еженедельно")
+            {
+                int activeWeeklyCoursesCount = GetActiveWeeklyCoursesCount();
+
+                if (activeWeeklyCoursesCount >= MAX_WEEKLY_COURSES)
+                {
+                    MessageBox.Show($"Доступно не более {MAX_WEEKLY_COURSES} активных еженедельных курсов. Сохранение невозможно.",
+                                    "Ошибка",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return false; // Не разрешаем сохранить
+                }
+            }
+
+            return true;
+        }
+
+        private int GetActiveWeeklyCoursesCount()
+        {
+            int count = 0;
+
+            string query = @"
+                SELECT COUNT(*)
+                FROM Courses
+                WHERE Periodicity = 'Еженедельно' AND IsActive = 1;";
+
+            var connection = _dataBase.getConnection();
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                count = (int)command.ExecuteScalar();
+            }
+
+            return count;
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
