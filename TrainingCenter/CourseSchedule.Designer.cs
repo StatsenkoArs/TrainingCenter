@@ -47,12 +47,13 @@
             // 
             // CourseSchedule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke; // светлый фон
             this.ClientSize = new System.Drawing.Size(1599, 903);
             this.Controls.Add(this.btn_create);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CourseSchedule";
             this.Text = "Расписание";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
